@@ -4,6 +4,8 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter{
 
 	private Handler handler;
+	private boolean sPressed, wPressed, aPressed, dPressed;
+	
 	
 	public KeyInput(Handler handler) {
 		this.handler = handler;
@@ -19,10 +21,24 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player) {
 				//key events for player 1
 				
-				if(key == KeyEvent.VK_W) tempObject.setVelY(-5);
-				if(key == KeyEvent.VK_S) tempObject.setVelY(+5);
-				if(key == KeyEvent.VK_D) tempObject.setVelX(+5);
-				if(key == KeyEvent.VK_A) tempObject.setVelX(-5);		
+				
+				if(key == KeyEvent.VK_W) {
+					wPressed = true;
+					tempObject.setVelY(-5);
+				}
+				if(key == KeyEvent.VK_S) {
+					sPressed = true;
+					tempObject.setVelY(+5);
+				}
+				if(key == KeyEvent.VK_D) {
+					dPressed = true;
+					tempObject.setVelX(+5);
+				}
+				if(key == KeyEvent.VK_A) {
+					aPressed = true;
+					tempObject.setVelX(-5);	
+				}
+					
 			}
 		}
 	}
@@ -35,14 +51,32 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player) {
 			//key events for player 1
 			
-				if(key == KeyEvent.VK_W) tempObject.setVelY(0);
-				if(key == KeyEvent.VK_S) tempObject.setVelY(0);
-				if(key == KeyEvent.VK_D) tempObject.setVelX(0);
-				if(key == KeyEvent.VK_A) tempObject.setVelX(0);		
+				if(key == KeyEvent.VK_W) { 
+					wPressed = false;
+					if(sPressed) tempObject.setVelY(+5);
+					else tempObject.setVelY(0);
+				}				
+			
+				if(key == KeyEvent.VK_S) { 
+					sPressed = false;
+					if(wPressed) tempObject.setVelY(-5);
+					else tempObject.setVelY(0);
+				}				
+				if(key == KeyEvent.VK_D) {
+					dPressed = false;
+					if(aPressed) tempObject.setVelX(-5);
+					else tempObject.setVelX(0);
+				}
+				if(key == KeyEvent.VK_A) {
+					aPressed = false;
+					if(dPressed) tempObject.setVelX(+5);
+					else tempObject.setVelX(0);
+				}
+				
 			}
 			
 		}
-
+		
 		if(key == KeyEvent.VK_ESCAPE) System.exit(1);
 	}
 	
