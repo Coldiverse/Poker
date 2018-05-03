@@ -2,6 +2,13 @@
 public enum ID {
 
 	Player(),
+	BasicEnemy(),
+	FastEnemy(),
+	FastEnemyV(),
+	FastEnemyH(),
+	SmartEnemy(),
+	BossEnemy(),
 	Trail(),
-	BasicEnemy();
+	Boss1,
+	Boss1Bullet;
 }
