@@ -29,7 +29,7 @@ public class KeyInput extends KeyAdapter{
 				if(key == KeyEvent.VK_S) {
 					sPressed = true;
 					tempObject.setVelY(+5);
-				}
+				}	
 				if(key == KeyEvent.VK_D) {
 					dPressed = true;
 					tempObject.setVelX(+5);
