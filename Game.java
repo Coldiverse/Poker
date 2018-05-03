@@ -4,11 +4,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
+//yeet
+
+
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1l;
 	
-	public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+	public static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9;
 	
 	private Thread thread;
 	private boolean running = false;
@@ -16,23 +19,37 @@ public class Game extends Canvas implements Runnable {
 	private Random r;
 	private Handler handler;
 	private HUD hud;
+	private Spawn spawner;
+	private Menu menu;
+	
+	public STATE gameState = STATE.Menu;
+	
+	public enum STATE{
+		Menu,
+		Game
+	};
 	
 	public Game() {
 		
 		handler = new Handler();
+		menu = new Menu(this, handler);
 		this.addKeyListener(new KeyInput(handler));
+		this.addMouseListener(menu);
 		
 		new Window(WIDTH, HEIGHT, "YOTE", this);
 		
 		hud = new HUD();
-		
+		spawner = new Spawn(handler, hud);
+
 		r = new Random();
 		
-		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, handler));
+		if(gameState == STATE.Game)
+		{
+			handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
+			handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, handler));
+		}
+		
+
 	}
 	
 	public synchronized void start() {
@@ -83,7 +100,12 @@ public class Game extends Canvas implements Runnable {
 	
 	private void tick() {
 		handler.tick();
-		hud.tick();
+		if(gameState == STATE.Game)
+		{
+			hud.tick();
+			spawner.tick();
+		}
+
 	}
 	
 	private void render() {
@@ -100,17 +122,22 @@ public class Game extends Canvas implements Runnable {
 		
 		handler.render(g);
 		
-		hud.render(g);
+		if(gameState == STATE.Game)
+		{
+			hud.render(g);
+		}else if(gameState == STATE.Menu) {
+			menu.render(g);
+		}
 		
 		g.dispose();
 		bs.show();
 	}
 	
-	public static int clamp(int var, int min, int max) {
+	public static float clamp(float var, float d, float max) {
 		if(var >= max)
 			return var = max;
-		else if(var <= min)
-			return var = min;
+		else if(var <= d)
+			return var = d;
 		else
 			return var;
 	}
