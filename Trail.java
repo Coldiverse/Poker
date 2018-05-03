@@ -7,14 +7,16 @@ import java.awt.Rectangle;
 public class Trail extends GameObject{
 
 	private float alpha = 1;
+	private float life;
+	
 	private Handler handler;
 	private Color color;
 	
 	private int width, height;
-	private float life;
-	//life = .01 - .1
+
+	//life = .001 - .1
 	
-	public Trail(int x, int y, ID id, Color color, int width, int height, float life, Handler handler) {
+	public Trail(float x, float y, ID id, Color color, int width, int height, float life, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
 		this.color = color;
@@ -35,7 +37,7 @@ public class Trail extends GameObject{
 		g2d.setComposite(makeTransparent(alpha));
 		
 		g.setColor(color);
-		g.fillRect(x, y, width, height);
+		g.fillRect((int)x, (int)y, width, height);
 		
 		g2d.setComposite(makeTransparent(1));
 		
