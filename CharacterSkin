@@ -1,0 +1,99 @@
+import java.awt.*;
+import java.applet.*;
+import java.awt.Graphics;
+  
+  
+public class characterSkin  
+{
+	
+	public enum SKIN {
+		Default,
+		Creeper,
+		Knuckles,
+		Pikachu,
+		Batman
+	}
+	
+	public static void Default(Graphics g) {
+		g.setColor(Color.white);
+		g.fillRect(0, 0, 32, 32);
+	}
+	
+	public static void Creeper(Graphics g)
+	{
+		Color darkGreen = new Color(16, 132, 14);
+		g.setColor(darkGreen);
+		g.fillRect(0,0,32,32);
+		g.setColor(Color.black);  
+		g.fillRect(5,5,8,8);
+		g.fillRect(20,5,8,8);
+		g.fillRect(13,11,7,12);
+		g.fillRect(10,15,4,10);
+        g.fillRect(19,15,4,10);
+	}
+	public static void Knuckles(Graphics g)
+	{
+		Color darkRed = new Color(191, 17, 17 );
+		Color tan = new Color (244, 195, 95);
+		Color darkTan = new Color (178, 146, 82);
+		//knucles
+     
+		g.setColor(darkRed);
+		g.fillRect(0,0,32,32);
+		g.setColor(Color.white);  
+		g.fillRect(0,5,10,13);
+		g.fillRect(22,5,10,13);
+		g.setColor(Color.black);
+		g.fillRect(0,9,8,10);
+		g.fillRect(24,9,8,10);
+		g.setColor(tan);
+		g.fillRect(0,19,32,13);
+		g.setColor(Color.black);
+		g.fillRect(12,19,5,5);
+		g.setColor(darkTan);
+		g.fillRect(4,23,4,2);
+		g.fillRect(8,25,13,2);
+		g.fillRect(21,23,4,2);
+	}
+
+	public static void Pikachu(Graphics g)
+	{
+		Color darkYellow = new Color(244, 229, 9);
+		//Pikachu
+		g.setColor(darkYellow);
+		g.fillRect(0,0,32,32);
+		g.setColor(Color.black);
+		g.fillRect(5,10,8,8);
+		g.fillRect(18,10,8,8);
+		g.setColor(Color.white);
+		g.fillRect(5,10,4,4);
+		g.fillRect(18,10,4,4);
+		g.setColor(Color.red);
+		g.fillRect(0,18,8,8);
+		g.fillRect(24,18,8,8);
+		g.setColor(Color.black);
+		g.fillRect(12,17,7,4);
+	}
+
+	public static void Batman(Graphics g)
+	{
+		Color darkTan = new Color (178, 146, 82);
+		Color darkerTan = new Color (219, 178, 98);
+
+		g.setColor(Color.black);
+		g.fillRect(0,0,32,32);
+
+		g.setColor(Color.white);
+		g.fillRect(4,11,8,4);
+		g.fillRect(20,11,8,4);
+		
+		g.setColor(darkerTan);
+		g.fillRect(0,23,32,9);
+		g.fillRect(4,20,24,5);
+		
+		g.setColor(darkTan);
+		g.fillRect(8,23,16,4);
+		
+	}
+	
+}
