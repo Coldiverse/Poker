@@ -10,5 +10,5 @@ public enum ID {
 	BossEnemy(),
 	Trail(),
 	Boss1,
-	Boss1Bullet;
+	Boss1Bullet, MenuParticle;
 }
